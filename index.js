@@ -43,11 +43,11 @@ function checkWinner() {
     for (const winningCombination of playerWins) {
       //Object Destructuring
       const { combo, strikeClass } = winningCombination;
-      const squareValue1 = gameState[combo[0] - 1];
-      const squareValue2 = gameState[combo[1] - 1];
-      const squareValue3 = gameState[combo[2] - 1];
+      const squareValue1 = gameState[combo[0] ];
+      const squareValue2 = gameState[combo[1] ];
+      const squareValue3 = gameState[combo[2] ];
   
-      if ( tileValue1 != 'null' && tileValue1 === tileValue2 && tileValue1 === tileValue3
+      if ( tileValue1 != 'null' && squareValue1 === squareValue2 && squareValue1 === squareValue3
       ){
           gameOver=true
           return
@@ -56,12 +56,12 @@ function checkWinner() {
 }
 
 const playerWins = [
-    { combo: [1, 2, 3],},
-    { combo: [4, 5, 6],},
-    { combo: [7, 8, 9],},
+    { combo: [0, 1, 2],},
+    { combo: [3, 4, 5],},
+    { combo: [6, 7, 8],},
+    { combo: [0, 3, 6],},
     { combo: [1, 4, 7],},
     { combo: [2, 5, 8],},
-    { combo: [3, 6, 9],},
-    { combo: [1, 5, 9],},
-    { combo: [3, 5, 7],},
+    { combo: [0, 4, 8],},
+    { combo: [2, 4,6],},
   ]
