@@ -69,5 +69,9 @@ body{
   transform: translate(-50%, -50%);
 }
 
+.winner {
+    background-color: white;
+    color: rgb(135, 47, 47);
+}
 
 
