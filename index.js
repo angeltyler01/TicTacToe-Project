@@ -3,7 +3,7 @@ let squares = document.querySelectorAll('.square');
 const playerX = 'x'
 const playerO = 'o'
 let currentPlayer = playerX
-gameOver= false
+let gameOver= false
 
 //Make an empty array for the squares inside the board. I used an array instead of the dataset attriute because my console kept sending errors.
 const gameState = ['null','null','null','null','null','null','null','null','null']
@@ -16,11 +16,9 @@ const click = new Audio('/assets/click.mp3');
 squares.forEach((square) => square.addEventListener('click', clickSquare))
 
 //which box was clicked
+
+
 function clickSquare(event) {
-    if (gameOver){
-        return; 
-    }
-    
     const square = event.target
     
     if(square.innerText !=''){
@@ -35,21 +33,38 @@ function clickSquare(event) {
         square.innerText = playerO
         gameState[gameState-1] = playerO
         currentPlayer = playerX
-    }
+    }{
     click.play()
-    winner()
+    }
 }
-let playerWins= [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
-]
 
-function winner(){
- 
+function checkWinner() {
+    //Check for a winner
+    for (const winningCombination of winningCombinations) {
+      //Object Destructuring
+      const { combo, strikeClass } = winningCombination;
+      const tileValue1 = boardState[combo[0] - 1];
+      const tileValue2 = boardState[combo[1] - 1];
+      const tileValue3 = boardState[combo[2] - 1];
   
+      if (
+        tileValue1 != null &&
+        tileValue1 === tileValue2 &&
+        tileValue1 === tileValue3
+      ){
+          gameOver=true
+          break
+      }
+    }
+}
+
+const playerWins = [
+    { combo: [1, 2, 3],},
+    { combo: [4, 5, 6],},
+    { combo: [7, 8, 9],},
+    { combo: [1, 4, 7],},
+    { combo: [2, 5, 8],},
+    { combo: [3, 6, 9],},
+    { combo: [1, 5, 9],},
+    { combo: [3, 5, 7],},
+  ]
