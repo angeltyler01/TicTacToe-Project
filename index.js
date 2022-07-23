@@ -40,20 +40,17 @@ function clickSquare(event) {
 
 function checkWinner() {
     //Check for a winner
-    for (const winningCombination of winningCombinations) {
+    for (const winningCombination of playerWins) {
       //Object Destructuring
       const { combo, strikeClass } = winningCombination;
-      const tileValue1 = boardState[combo[0] - 1];
-      const tileValue2 = boardState[combo[1] - 1];
-      const tileValue3 = boardState[combo[2] - 1];
+      const squareValue1 = gameState[combo[0] - 1];
+      const squareValue2 = gameState[combo[1] - 1];
+      const squareValue3 = gameState[combo[2] - 1];
   
-      if (
-        tileValue1 != null &&
-        tileValue1 === tileValue2 &&
-        tileValue1 === tileValue3
+      if ( tileValue1 != 'null' && tileValue1 === tileValue2 && tileValue1 === tileValue3
       ){
           gameOver=true
-          break
+          return
       }
     }
 }
